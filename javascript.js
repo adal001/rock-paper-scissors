@@ -14,11 +14,16 @@ function getComputerChoice() {
     }
 }
 
-// Ask the user for their choice and return it
+// Ask the user for their choice and return it.
 
 function getHumanChoice() {
-    // Ask the user for their choice
+    // Ask the user for their choice.
     const userChoice = prompt("What's your choice?");
-    // Return their choice
+    // Return their choice.
     return userChoice;
 }
+
+// Keep track of the players score with variables.
+
+let humanScore = 0;
+let computerScore = 0;
