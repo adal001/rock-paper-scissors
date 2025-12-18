@@ -13,3 +13,12 @@ function getComputerChoice() {
         return "scissors";
     }
 }
+
+// Ask the user for their choice and return it
+
+function getHumanChoice() {
+    // Ask the user for their choice
+    const userChoice = prompt("What's your choice?");
+    // Return their choice
+    return userChoice;
+}
