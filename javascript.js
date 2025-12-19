@@ -28,27 +28,17 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
     // Make human choice lower case to make different variations of input work:
     humanChoice = humanChoice.toLowerCase();
-    // Computer chooses rock:
-    if (computerChoice === "rock" && humanChoice === "paper") {
-        console.log("You win! Paper beats Rock!");
-    } else if (computerChoice === "rock" && humanChoice === "scissors") {
-        console.log("You lose! Rock beats Scissors!");
-    } else if (computerChoice === "rock" && humanChoice === "rock") {
-        console.log("It's a tie! Rock loves Rock!");
-    } // Computer chooses paper:
-      else if (computerChoice === "paper" && humanChoice === "scissors") {
-        console.log("You win! Scissors beats Paper!");
-    } else if (computerChoice === "paper" && humanChoice === "rock") {
-        console.log("You lose! Paper beats Rock!");
-    } else if (computerChoice === "paper" && humanChoice === "paper") {
-        console.log("It's a tie! Paper loves Paper!");
-    } // Computer chooses scissors:
-      else if (computerChoice === "scissors" && humanChoice === "rock") {
-        console.log("You win! Rock beats Scissors!");
-    } else if (computerChoice === "scissors" && humanChoice === "paper") {
-        console.log("You lose! Scissors beats Paper!");
+    // Tie / User wins / Computer wins:
+    if (humanChoice === computerChoice) {
+        console.log(`It's a tie! ${humanChoice} loves ${computerChoice}!`);
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
     } else {
-        console.log("It's a tie! Scissors loves Scissors!");
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
     }
 }
 
