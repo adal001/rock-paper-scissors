@@ -1,10 +1,8 @@
-/* Get computer choice with a function that randomly returns "rock", "paper" or
-"scissors". */
-
+// Set computer choice:
 function getComputerChoice() {
-    // Get a random number between 1 and 3.
+    // Get a random number between 1 and 3:
     const randomNumber = Math.floor(Math.random() * 3) + 1;
-    // Set each number to each choice and return one of them.
+    // Associate each number with each choice and return one of them:
     if (randomNumber === 1) {
         return "rock";
     } else if (randomNumber === 2) {
@@ -14,17 +12,15 @@ function getComputerChoice() {
     }
 }
 
-// Ask the user for their choice and return it.
-
+// Set human choice:
 function getHumanChoice() {
-    // Ask the user for their choice.
-    const userChoice = prompt("What's your choice?");
-    // Return their choice.
-    return userChoice;
+    // Ask user for their choice:
+    const humanChoice = prompt("What's your choice?");
+    // Return their choice:
+    return humanChoice;
 }
 
-// Keep track of the players score with variables.
-
+// Keep track of the players score:
 let humanScore = 0;
 let computerScore = 0;
 
