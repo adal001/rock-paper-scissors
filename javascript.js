@@ -34,7 +34,7 @@ function capitalizeFirstLetter(choice) {
 function playRound(humanChoice, computerChoice) {
     // Make human choice lower case to make different variations of input work:
     humanChoice = humanChoice.toLowerCase();
-    // Tie / User wins / Computer wins:
+    // Tie / User wins, show new score / Computer wins, show new score:
     if (humanChoice === computerChoice) {
         console.log(`It's a tie! ${capitalizeFirstLetter(humanChoice)} loves `
         + `${capitalizeFirstLetter(computerChoice)}!`);
@@ -45,9 +45,13 @@ function playRound(humanChoice, computerChoice) {
     ) {
         console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats `
         + `${capitalizeFirstLetter(computerChoice)}!`);
+        humanScore += 1;
+        console.log(`Your score is: ${humanScore}.`);
     } else {
         console.log(`You lose! ${capitalizeFirstLetter(computerChoice)} beats `
         + `${capitalizeFirstLetter(humanChoice)}!`);
+        computerScore += 1;
+        console.log(`The computer's score is: ${computerScore}.`);
     }
 }
 
