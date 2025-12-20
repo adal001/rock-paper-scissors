@@ -24,21 +24,30 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+// Capitalize the first letter of each choice in the result of the game:
+function capitalizeFirstLetter(choice) {
+    choice = choice[0].toUpperCase() + choice.slice(1);
+    return choice;
+}
+
 // Logic to play a round of the game:
 function playRound(humanChoice, computerChoice) {
     // Make human choice lower case to make different variations of input work:
     humanChoice = humanChoice.toLowerCase();
     // Tie / User wins / Computer wins:
     if (humanChoice === computerChoice) {
-        console.log(`It's a tie! ${humanChoice} loves ${computerChoice}!`);
+        console.log(`It's a tie! ${capitalizeFirstLetter(humanChoice)} loves `
+        + `${capitalizeFirstLetter(computerChoice)}!`);
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+        console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats `
+        + `${capitalizeFirstLetter(computerChoice)}!`);
     } else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
+        console.log(`You lose! ${capitalizeFirstLetter(computerChoice)} beats `
+        + `${capitalizeFirstLetter(humanChoice)}!`);
     }
 }
 
