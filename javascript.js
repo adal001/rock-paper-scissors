@@ -20,45 +20,60 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-// Keep track of the players score:
-let humanScore = 0;
-let computerScore = 0;
+// Play the game:
+function playGame() {
+    // Play 5 rounds of the game:
+    for (let i = 1; i <=5; i++) {
+        // Keep track of the players score:
+        let humanScore = 0;
+        let computerScore = 0;
 
-// Capitalize the first letter of each choice in the result of the game:
-function capitalizeFirstLetter(choice) {
-    choice = choice[0].toUpperCase() + choice.slice(1);
-    return choice;
-}
+        // Capitalize the first letter of each choice in the result of the game:
+        function capitalizeFirstLetter(choice) {
+            choice = choice[0].toUpperCase() + choice.slice(1);
+            return choice;
+        }
 
-// Logic to play a round of the game:
-function playRound(humanChoice, computerChoice) {
-    // Make human choice lower case to make different variations of input work:
-    humanChoice = humanChoice.toLowerCase();
-    // Tie / User wins, show new score / Computer wins, show new score:
-    if (humanChoice === computerChoice) {
-        console.log(`It's a tie! ${capitalizeFirstLetter(humanChoice)} loves `
-        + `${capitalizeFirstLetter(computerChoice)}!`);
-    } else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")
-    ) {
-        console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats `
-        + `${capitalizeFirstLetter(computerChoice)}!`);
-        humanScore += 1;
-        console.log(`Your score is: ${humanScore}.`);
-    } else {
-        console.log(`You lose! ${capitalizeFirstLetter(computerChoice)} beats `
-        + `${capitalizeFirstLetter(humanChoice)}!`);
-        computerScore += 1;
-        console.log(`The computer's score is: ${computerScore}.`);
+        // Logic to play a round of the game:
+        function playRound(humanChoice, computerChoice) {
+            // Make human choice lower case to make different variations of input work:
+            humanChoice = humanChoice.toLowerCase();
+            // Tie / User wins, set new score / User loses, set new score:
+            if (humanChoice === computerChoice) {
+                const tieMessage =
+                    `Your choice: ${humanSelection}.\n` +
+                    `Computer's choice: ${computerSelection}.\n` +
+                    `It's a tie! ${capitalizeFirstLetter(humanChoice)} loves ${capitalizeFirstLetter(computerChoice)}!`;
+                console.log(tieMessage);
+            } else if (
+                (humanChoice === "rock" && computerChoice === "scissors") ||
+                (humanChoice === "paper" && computerChoice === "rock") ||
+                (humanChoice === "scissors" && computerChoice === "paper")
+            ) {
+                humanScore += 1;
+                const winMessage =
+                    `Your choice: ${humanSelection}.\n` +
+                    `Computer's choice: ${computerSelection}.\n` +
+                    `You win! ${capitalizeFirstLetter(humanChoice)} beats ${capitalizeFirstLetter(computerChoice)}!\n` +
+                    `Your score is: ${humanScore}.`;
+                console.log(winMessage);
+            } else {
+                computerScore += 1;
+                const loseMessage =
+                    `Your choice: ${humanSelection}.\n` +
+                    `Computer's choice: ${computerSelection}.\n` +
+                    `You lose! ${capitalizeFirstLetter(computerChoice)} beats ${capitalizeFirstLetter(humanChoice)}!\n` +
+                    `The computer's score is: ${computerScore}.`;
+                console.log(loseMessage);
+            }
+        }
+        
+        // Use human and computer choices to play a round of the game:
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        
+        playRound(humanSelection, computerSelection);
     }
 }
 
-// Use the human and computer choices to play a round of the game:
-const humanSelection = getHumanChoice();
-console.log(`Your choice: ${humanSelection}`);
-const computerSelection = getComputerChoice();
-console.log(`Computer's choice: ${computerSelection}`);
-
-playRound(humanSelection, computerSelection);
+playGame();
