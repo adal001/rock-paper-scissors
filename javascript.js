@@ -1,8 +1,7 @@
-// Set computer choice:
-function getComputerChoice() {
-    // Get a random number between 1 and 3:
+// Set computer choice by randomly choosing one of the 3 options:
+function getComputerChoice() {    
     const randomNumber = Math.floor(Math.random() * 3) + 1;
-    // Associate each number with each choice and return one of them:
+
     if (randomNumber === 1) {
         return "rock";
     } else if (randomNumber === 2) {
@@ -12,19 +11,24 @@ function getComputerChoice() {
     }
 }
 
-// Set human choice:
+// Set human choice by asking the user for it:
 function getHumanChoice() {
-    // Ask user for their choice:
     const humanChoice = prompt("What's your choice?");
-    // Return their choice:
+
     return humanChoice;
 }
 
-// Capitalize the first letter of each choice in the result of the game:
-function capitalizeFirstLetter(choice) {
+// Capitalize the first letter of each choice:
+function capitalize(choice) {
     choice = choice[0].toUpperCase() + choice.slice(1);
+
     return choice;
 }
+
+// Possible round outcomes:
+const roundTie = "tie";
+const roundWin = "win";
+const roundLose = "lose";
 
 // Logic to play a round of the game:
 function playRound(humanChoice, computerChoice) {
@@ -33,70 +37,81 @@ function playRound(humanChoice, computerChoice) {
     // Tie / User wins / User loses:
     if (humanChoice === computerChoice) {
         const tieMessage =
-            `Your choice: ${humanChoice}.\n` +
-            `Computer's choice: ${computerChoice}.\n` +
-            `It's a tie! ${capitalizeFirstLetter(humanChoice)} loves ${capitalizeFirstLetter(computerChoice)}!`;
+            `Your choice: ${capitalize(humanChoice)}.\n` +
+            `Computer's choice: ${capitalize(computerChoice)}.\n` +
+            `This round is a tie! ${capitalize(humanChoice)} loves ` +
+            `${capitalize(computerChoice)}!`;
+
         console.log(tieMessage);
-        return "Tie";
+        
+        return roundTie;
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
         const winMessage =
-            `Your choice: ${humanChoice}.\n` +
-            `Computer's choice: ${computerChoice}.\n` +
-            `You win! ${capitalizeFirstLetter(humanChoice)} beats ${capitalizeFirstLetter(computerChoice)}!`;
+            `Your choice: ${capitalize(humanChoice)}.\n` +
+            `Computer's choice: ${capitalize(computerChoice)}.\n` +
+            `You win this round! ${capitalize(humanChoice)} beats ` +
+            `${capitalize(computerChoice)}!`;
+        
         console.log(winMessage);
-        return "Win";
+        
+        return roundWin;
     } else {
         const loseMessage =
-            `Your choice: ${humanChoice}.\n` +
-            `Computer's choice: ${computerChoice}.\n` +
-            `You lose! ${capitalizeFirstLetter(computerChoice)} beats ${capitalizeFirstLetter(humanChoice)}!`;
+            `Your choice: ${capitalize(humanChoice)}.\n` +
+            `Computer's choice: ${capitalize(computerChoice)}.\n` +
+            `You lose this round! ${capitalize(computerChoice)} beats ` +
+            `${capitalize(humanChoice)}!`;
+        
         console.log(loseMessage);
-        return "Lose";
+
+        return roundLose;
     }
 }
 
-// Play the game:
+// Logic to play the whole game:
 function playGame() {
     // Keep track of the players score:
     let humanScore = 0;
     let computerScore = 0;
     // Play 5 rounds of the game:
     for (let i = 1; i <=5; i++) {
-        // Use human and computer choices to play a round of the game:
+        // Use human and computer choices to play a round and increase the scores:
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
         
-        const gameEnd = playRound(humanSelection, computerSelection);
+        const roundEnd = playRound(humanSelection, computerSelection);
 
-        if (gameEnd === "Win") {
+        if (roundEnd === roundWin) {
             humanScore += 1;
-        } else if (gameEnd === "Lose") {
+        } else if (roundEnd === roundLose) {
             computerScore += 1;
         }
     }
-
+    // Declare a winner:
     if (humanScore > computerScore) {
-        const winEnding =
+        const endWin =
             `Your final score is: ${humanScore}!\n` +
             `The computer's final score is: ${computerScore}.\n` +
             `HUMANITY WINS! COMPUTERS ARE TOASTERS!`;
-        console.log(winEnding);
+        
+        console.log(endWin);
     } else if (humanScore < computerScore) {
-        const loseEnding =
+        const endLose =
             `The computer's final score is: ${computerScore}!\n` +
             `Your final score is: ${humanScore}.\n` +
             `COMPUTERS WIN! HUMANITY IS DOOMED!`;
-        console.log(loseEnding);
+        
+        console.log(endLose);
     } else {
-        const tieEnding =
+        const endTie =
             `The final scores are: ${humanScore} and ${computerScore}.\n` +
             `IT'S A TIE! HUMANITY AND COMPUTERS = BFF! 🤝`;
-        console.log(tieEnding);
+        console.log(endTie);
     }
 }
-
+// Have fun:
 playGame();
